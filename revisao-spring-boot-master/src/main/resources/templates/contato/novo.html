@@ -1,0 +1,70 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8"></meta>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+       <div >
+         
+                        <h2 class="text-center">Novo Contato</h2>
+
+        <form th:action="@{/contato/salvar}" th:object="${contato}" method="post">
+
+              <input type="hidden" th:field="*{id}"/>
+              <p> Nome*:  <input placeholder="Digite o nome" class="form-control text-center" type="text" th:field="*{nome}"/></p> 
+              <p>CPF*:  <input placeholder="Digite o CPF" class="form-control text-center" type="text" th:field="*{cpf}"/></p> 
+              <p>Dt.Nasc.*: <input placeholder="Digite a Data de Nascimento" class="form-control text-center" type="date" th:field="*{data_nasc}"/></p>
+              <p>Sexo*: <input  type="radio" value="Femino" th:field="*{sexo}"/>Feminino <input  type="radio" value="Masculino" th:field="*{sexo}"/>Masculino</p>
+              <p>Endereço*:  <input placeholder="Digite o Endereço" class="form-control text-center" type="text" th:field="*{endereco}"/></p> 
+              <p>Número*:  <input placeholder="Digite o Número" class="form-control text-center" type="text" th:field="*{numero}"/></p>
+              <p>Complemento:  <input placeholder="Digite o Complemento" class="form-control text-center" type="text" th:field="*{complemento}"/></p>
+              <p>Cidade*:  <input placeholder="Digite o Cidade" class="form-control text-center" type="text" th:field="*{cidade}"/></p> 
+              <p>UF*: <select th:field="*{uf}" class="form-control">
+                      <option value=" "></option>
+                <option value="AC">AC</option>
+                 <option value="AL">AL</option>
+                 <option value="AP">AP</option>
+                 <option value="AM">AM</option>
+                 <option value="BA">BA</option>
+                 <option value="CE">CE</option>
+                 <option value="DF">DF</option>
+                 <option value="ES">ES</option>
+                 <option value="GO">GO</option>
+                 <option value="MA">MA</option>
+                 <option value="MT">MT</option>
+                 <option value="MS">MS</option>
+                 <option value="MG">MG</option>
+                 <option value="PA">PA</option>
+                 <option value="PB">PB</option>
+                 <option value="PR">PR</option>
+                 <option value="PE">PE</option>
+                 <option value="PI">PI</option>
+                 <option value="RJ">RJ</option>
+                 <option value="RN">RN</option>
+                 <option value="RS">RS</option>
+                 <option value="RO">RO</option>
+                 <option value="RR">RR</option>
+                 <option value="SC">SC</option>
+                 <option value="SP">SP</option>
+                 <option value="SE">SE</option>
+                 <option value="TO">TO</option></select >  </p>  
+              <p>CEP*:  <input placeholder="Digite o CEP" class="form-control text-center" type="text" th:field="*{cep}"/></p> 
+              <p>Email*:  <input placeholder="Digite o E-mail" class="form-control text-center" type="email" th:field="*{email}"/></p> 
+              <p>Telefone*:  <input placeholder="Digite o Telefone" class="form-control text-center" type="tel" th:field="*{tel}"/></p> 
+			  <p><input  type="checkbox" value="Yes" th:field="*{camiseta}"/>Camiseta</p>
+			
+            <button class="btn btn-primary" type="submit">salvar</button>
+        </form>
+    </div>
+  </div>
+</div>
+        
+
+<a th:href="@{/contato}">voltar para listagem</a>
+
+</body>
+</html>

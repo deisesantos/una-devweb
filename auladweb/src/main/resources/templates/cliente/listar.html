@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+	<title>Cadastro</title>
+</head>
+<body>
+	<form th:action="@{/}" th:object="${cliente}" method="post">
+    	<input th:field="*{id}" type="hidden"/>
+    	<label>Nome</label>
+    	<input th:field="*{nome}" type="text"/>
+    	<span  th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="badge badge-danger" >erro</span>
+    	<br/>
+    	
+    	<label>Sexo</label>
+    	<br/>
+    	<input th:checked="*{sexo !=null ? sexo.toString():'' == 'Masculino'}" type="radio" id="masc" 
+    	name="sexo" value="Masculino"/>
+    	<label for="masc">Masculino</label>
+    	<input th:checked="*{sexo !=null ? sexo.toString():'' == 'Feminino'}" type="radio" id="fem" 
+    	name="sexo" value="Feminino"/>
+    	<label for="fem">Feminino</label>
+   		<span  th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}" 
+   		class="badge badge-danger" >erro</span>
+   		<br/>
+   		
+    	<label>Idade</label>
+    	<input th:field="*{idade}" type="number"/>
+    	<span  th:if="${#fields.hasErrors('idade')}" th:errors="*{idade}" class="badge badge-danger" >erro</span>
+    	<br/>
+    	
+    	<label>Camiseta</label>
+    	<select th:field="*{camiseta}">
+        	<option value="">Selecione</option>
+        	<option value="P">P</option>
+        	<option value="M">M</option>
+        	<option value="G">G</option>
+        	<option value="XG">XG</option>
+    	</select>
+    	<span  th:if="${#fields.hasErrors('camiseta')}" th:errors="*{camiseta}"
+        class="badge badge-danger" >erro</span>
+    	<br/>
+    	
+    	<label>Opção de laser</label>
+    	<br/>
+    	<input th:checked="*{opcaoLaser.contains('cinema')}" type="checkbox" 
+    	id="cinema" name="opcaoLaser" value="Cinema"/>
+    	<label for="cinema">Cinema</label>
+    	<input th:checked="*{opcaoLaser.contains('rave')}" type="checkbox" 
+    	id="rave" name="opcaoLaser" value="Rave"/>
+    	<label for="rave">Rave</label>
+    	<input th:checked="*{opcaoLaser.contains('teatro')}" type="checkbox" 
+    	id="teatro" name="opcaoLaser" value="Teatro"/>
+    	<label for="teatro">Teatro</label>
+    	<input th:checked="*{opcaoLaser.contains('shopping')}" type="checkbox" 
+    	id="shopping" name="opcaoLaser" value="Shopping"/>
+    	<label for="shopping">Shopping</label>
+    	<br/>
+    	
+    	<button type="submit">Salvar</button>
+    	
+	</form>
+
+	<form th:action="@{/buscar}" method="get">
+    	<input type="text" name="nome"/>
+    	<button type="submit">buscar</button>
+	</form>
+
+	<table class="table">
+    	<thead>
+    		<tr scope="row">
+        		<th>Nome</th>
+        		<th>Sexo</th>
+        		<th>Idade</th>
+        		<th>Camiseta</th>
+        		<th>Opção de Laser</th>
+        		<th>Editar</th>
+        		<th>Excluir</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr th:each="cliente: ${clientes}">
+        		<td th:text="${cliente.nome}"></td>
+        		<td th:text="${cliente.sexo}"></td>
+        		<td th:text="${cliente.idade}"></td>
+        		<td th:text="${cliente.camiseta}"></td>
+        		<td th:text="${cliente.opcaoLaser}"></td>
+        		<td><a th:href="@{/{id}(id=${cliente.id})}">Editar</a></td>
+        		<td><a th:href="@{/excluir/{id}(id=${cliente.id})}">Excluir</a></td>
+    		</tr>
+    	</tbody>
+	</table>
+
+</body>
+</html>

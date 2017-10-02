@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+	<meta charset="UTF-8"></meta>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body>
+<h2>Lista</h2>
+
+<form th:action="@{/buscar}" method="get">
+	<input type="text" name="nome"/>
+	<button type="submit">Listar</button>
+</form>
+
+<table class="table">
+    <thead>
+
+    <tr scope="row">
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Data de Nascimento</th>
+        <th>Sexo</th>
+        <th>Endereço</th>
+        <th>Número</th>
+        <th>Complemento</th>
+        <th>Cidade</th>
+        <th>UF</th>
+        <th>CEP</th>
+        <th>E-mail</th>
+        <th>Telefone</th>
+        <th>Camiseta</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contato:${contatos}" scope="row">
+        <td th:text="${contato.nome}"></td>
+        <td th:text="${contato.cpf}"></td>
+        <td th:text="${contato.data_nasc}"></td>
+        <td th:text="${contato.sexo}"></td>
+        <td th:text="${contato.endereco}"></td>
+        <td th:text="${contato.numero}"></td>
+        <td th:text="${contato.complemento}"></td>
+        <td th:text="${contato.cidade}"></td>
+        <td th:text="${contato.uf}"></td>
+        <td th:text="${contato.cep}"></td>
+        <td th:text="${contato.email}"></td>
+        <td th:text="${contato.tel}"></td>
+        <td th:text="${contato.camiseta?'Sim':'Não'}"></td>
+        <td><a th:href="@{/contato/{id}/delete(id=${contato.id})}">deletar</a>
+            <a th:href="@{/contato/{id}(id=${contato.id})}">editar</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/contato/novo}">novo</a>
+</body>
+</html>
